@@ -1,4 +1,4 @@
-import { _mint, _mintTransfer, _transfer, _withdraw, createExecutableFunctions, NApp } from "@n1xyz/nts-sdk";
+import { _mint, _mintTransfer, _transfer, _withdraw, createExecutableFunctions, NApp } from "@n1xyz/nts-compiler";
 
 class Counter extends NApp {
   withdraw(
@@ -31,7 +31,7 @@ class Counter extends NApp {
     mint: string,
     receiver: string
   ) {
-    _transfer(BigInt(amount), mint, receiver);
+    _transfer(BigInt(amount), mint, receiver);xany
   }
 
   /*
