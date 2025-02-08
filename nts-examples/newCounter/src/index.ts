@@ -31,7 +31,7 @@ class Counter extends NApp {
     mint: string,
     receiver: string
   ) {
-    _transfer(BigInt(amount), mint, receiver);xany
+    _transfer(BigInt(amount), mint, receiver);
   }
 
   /*
