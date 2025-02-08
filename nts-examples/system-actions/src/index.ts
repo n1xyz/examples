@@ -1,6 +1,13 @@
-import { _mint, _mintTransfer, _transfer, _withdraw, createExecutableFunctions, NApp } from "@n1xyz/nts-compiler";
+import {
+  _mint,
+  _mintTransfer,
+  _transfer,
+  _withdraw,
+  createExecutableFunctions,
+  NApp,
+} from "@n1xyz/nts-compiler";
 
-class Counter extends NApp {
+class SystemActions extends NApp {
   withdraw(
     amount: string | number | bigint,
     mint: string,
@@ -18,19 +25,11 @@ class Counter extends NApp {
     _mintTransfer(BigInt(amount), mint, destination);
   }
 
-  mint(
-    totalSupply: string | number | bigint, 
-    admin: string, 
-    meta: any
-  ) {
+  mint(totalSupply: string | number | bigint, admin: string, meta: any) {
     _mint(BigInt(totalSupply), admin, meta);
   }
 
-  transfer(
-    amount: string | number | bigint,
-    mint: string,
-    receiver: string
-  ) {
+  transfer(amount: string | number | bigint, mint: string, receiver: string) {
     _transfer(BigInt(amount), mint, receiver);
   }
 
@@ -39,4 +38,5 @@ class Counter extends NApp {
   */
 }
 
-export const {mint,transfer,withdraw,mintTransfer} = createExecutableFunctions(Counter)
+export const { mint, transfer, withdraw, mintTransfer } =
+  createExecutableFunctions(SystemActions);

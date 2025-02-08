@@ -1,4 +1,4 @@
-import { createExecutableFunctions, NApp } from "@n1xyz/nts-sdk";
+import { createExecutableFunctions, NApp } from "@n1xyz/nts-compiler";
 import { hello } from "./hello";
 
 export class Counter extends NApp {

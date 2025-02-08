@@ -8,7 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@n1xyz/nts-sdk": "latest"
+    "@n1xyz/nts-compiler": "../../compiler"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",

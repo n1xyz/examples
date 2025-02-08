@@ -1,7 +1,7 @@
 {
-  "name": "counter-example",
+  "name": "system-actions-example",
   "version": "1.0.0",
-  "description": "Counter contract example",
+  "description": "System actions example",
   "scripts": {
     "build": "n1 app build \"%npm_package_json%/../src/index.ts\"",
     "deploy": "n1 app deploy %npm_package_name% \"%npm_package_json%/../src/index.ts\"",

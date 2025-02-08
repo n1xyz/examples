@@ -1,25 +1,23 @@
-import { describe, beforeEach, expect, test } from "@jest/globals";
-import { Counter } from "../src";
-import { injectMockStorage, createExecutableFunctions } from "@n1xyz/nts-sdk";
-
-// Setup mock storage
-injectMockStorage(Counter);
+import { describe, expect, test } from "@jest/globals";
+import { MockNAppClient } from "@n1xyz/nts-compiler";
 
 describe("Counter", () => {
-  // beforeEach(() => {
-  //   clearMockStorage();
-  // });
+  test("should correctly increment and decrement values", async () => {
+    // Load a mock client
+    const client = await MockNAppClient.loadClientFromPath(`src/index.ts`, {
+      signer: "0x123",
+      appAdmin: "0x123",
+      appId: "0x123",
+    });
 
-  // Inject functions to test
-  const { increment, decrement, getValue } = createExecutableFunctions(Counter);
-
-  test("should correctly increment and decrement values", () => {
     // Test increment
-    increment(5);
-    expect(getValue()).toBe(5);
+    await client.executeAction("increment", [5]);
+    const res = await client.readField("value");
+    expect(res).toBe("5");
 
     // Test decrement
-    decrement(2);
-    expect(getValue()).toBe(3);
+    await client.executeAction("decrement", [2]);
+    const res2 = await client.readField("value");
+    expect(res2).toBe("3");
   });
 });
