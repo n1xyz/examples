@@ -1,9 +1,0 @@
-{
-  "actions": {
-    "increment": "(amount: number) => void",
-    "decrement": "(amount: number) => void"
-  },
-  "state": {
-    "value": "number"
-  }
-}
