@@ -10,12 +10,18 @@ interface Proposal {
     executed: boolean;
 }
 
+enum VoteType {
+    YAY = "yay",
+    NAY = "nay",
+    ABSTAIN = "abstain"
+}
+
 // Define the structure of a User Vote
 interface Vote {
     proposalId: string;
     address: string;
     amount: number;
-    votedYay: boolean;
+    vote: VoteType;
 }
 
 export class DAOProposal extends NApp {
@@ -59,44 +65,44 @@ export class DAOProposal extends NApp {
     }
 
     // Vote on a proposal
-    vote(proposal: Proposal, isYay: boolean) {
+    vote(proposalId: string, startTime: number, endTime: number, vote: VoteType) {
 
         // validate parameters
-        if (!proposal || !isYay) {
+        if (!proposalId || !startTime || !endTime || !vote) {
             throw new Error('Invalid proposal or vote');
         }
 
-        if (proposal.executed) {
-            throw new Error('Proposal already executed');
-        }
-
-        if (proposal.startTime > Date.now()) {
+        if (startTime > Date.now()) {
             throw new Error('Proposal has not started yet');
         }
 
-        if (proposal.endTime < Date.now()) {
+        if (endTime < Date.now()) {
             throw new Error('Proposal has ended');
+        }
+
+        if (vote !== VoteType.YAY && vote !== VoteType.NAY && vote !== VoteType.ABSTAIN) {
+            throw new Error('Invalid vote type');
         }
 
         // Get user's token balance (assuming this is provided by the base layer)
         const userBalance = BigInt(this.tokenBalance(this.signer()));
 
         // Unique vote key for this user and proposal
-        const voteKey = `${proposal.id}____${this.signer()}`;
+        const voteKey = `${proposalId}____${this.signer()}`;
 
         const currentTime = Date.now();
 
         // Check if voting is within the proposal window
-        if (currentTime < proposal.startTime || currentTime > proposal.endTime) {
+        if (currentTime < startTime || currentTime > endTime) {
             throw new Error('Voting is not currently open for this proposal');
         }
 
         // Store the new vote
         this.votes.set(voteKey, {
-            proposalId: proposal.id,
+            proposalId: proposalId,
             address: this.signer(),
             amount: Number(userBalance),
-            votedYay: isYay
+            vote: vote
         });
     }
 
