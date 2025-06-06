@@ -1,0 +1,19 @@
+{
+  "actions": {
+    "init": "() => void",
+    "setupFaucet": "(totalSupply: string) => Promise<void>",
+    "setFaucetToken": "(mintId: string) => void",
+    "claim": "() => void",
+    "updateClaimAmount": "(newAmount: string) => void",
+    "updateCooldown": "(newCooldown: number) => void"
+  },
+  "state": {
+    "faucetToken": "string",
+    "isInitialized": "boolean",
+    "lastClaim": "NMap<number>",
+    "totalClaimed": "string",
+    "claimAmount": "string",
+    "cooldownPeriod": "number",
+    "fiko": "number"
+  }
+}

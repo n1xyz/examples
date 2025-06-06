@@ -1,5 +1,5 @@
 {
-  "name": "counter",
+  "name": "escrow-contract",
   "version": "0.1.0",
   "private": true,
   "scripts": {

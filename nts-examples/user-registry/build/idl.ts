@@ -1,0 +1,25 @@
+// Auto-generated from idl.json
+export type ContractIDL = {
+  actions: {
+    init: () => void,
+    register: (name: string, email: string) => void,
+    updateProfile: (name?: string, email?: string) => void,
+    deactivate: () => void
+  },
+  state: {
+    users: "NMap<UserProfile>",
+    userCount: "number"
+  }
+};
+export const IDL = {
+  actions: {
+    init: "() => void",
+    register: "(name: string, email: string) => void",
+    updateProfile: "(name?: string, email?: string) => void",
+    deactivate: "() => void"
+  },
+  state: {
+    users: "NMap<UserProfile>",
+    userCount: "number"
+  }
+};

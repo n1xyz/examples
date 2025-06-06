@@ -1,0 +1,9 @@
+{
+  "app_name": "escrow-contract",
+  "author": "n1",
+  "contracts": "contracts",
+  "build": "build",
+  "tests": "tests",
+  "utils": "utils",
+  "main": "contracts/app.ts"
+}

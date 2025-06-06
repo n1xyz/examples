@@ -1,0 +1,10 @@
+{
+  "actions": {
+    "init": "() => void",
+    "increment": "(by: number) => void",
+    "decrement": "(by: number) => void"
+  },
+  "state": {
+    "count": "number"
+  }
+}
